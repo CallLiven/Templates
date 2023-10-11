@@ -28,7 +28,7 @@ class FileHelper {
     let fileManager = FileManager.default
     var defaultPath: String
     
-    func listFolders(atPath path: String? = nil) -> [String]? {
+    func folders(atPath path: String? = nil) -> [String]? {
         let fullPath = path ?? defaultPath
         do {
             let contents = try fileManager.contentsOfDirectory(atPath: fullPath)
@@ -43,6 +43,25 @@ class FileHelper {
             return folders
         } catch {
             print("Failed to list all folders: \(error)")
+            return nil
+        }
+    }
+    
+    func files(inDirectory directoryPath: String, withExtension fileExtension: String? = nil) -> [String]? {
+        do {
+            let directoryURL = URL(fileURLWithPath: directoryPath)
+            let contents = try fileManager.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil, options: [])
+            
+            let files: [URL]
+            if let fileExtension = fileExtension {
+                files = contents.filter { $0.pathExtension == fileExtension }
+            } else {
+                files = contents
+            }
+            
+            return files.map { $0.lastPathComponent }
+        } catch {
+            print("Failed to list files in directory \(directoryPath): \(error)")
             return nil
         }
     }
@@ -97,5 +116,11 @@ class FileHelper {
             print("Failed to move file: \(error)")
             return false
         }
+    }
+}
+
+extension FileHelper {
+    func moudleContainFiles(_ moudle: String) -> [String]? {
+        files(inDirectory: defaultPath + "templates")
     }
 }

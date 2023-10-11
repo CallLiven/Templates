@@ -8,11 +8,12 @@
 import SwiftUI
 
 class SidebarModel: ObservableObject {
+    @EnvironmentObject var appState: AppState
     @Published var items: [String] = []
     @Published var isNameDuplicate = false
     
     func refreshItems() {
-        items = FileHelper.shared.listFolders() ?? []
+        items = FileHelper.shared.folders() ?? []
     }
     
     func addItem(named name: String) {
@@ -66,7 +67,6 @@ struct SideBarView: View {
                 .padding(.trailing, 10)
                 .onTapGesture {
                     isEditingNewItem = true
-                    //model.addItem(named: "New Item")
                     model.addDefaultValue()
                 }
             

@@ -8,7 +8,7 @@
 import SwiftUI
 import CodeHighlighter
 
-struct TemplatesSettingView: View {
+struct TemplatesListCellView: View {
     @Binding var fileContent: String
     
     var body: some View {
@@ -22,6 +22,6 @@ struct TemplatesSettingView: View {
 
 struct TemplatesSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        TemplatesSettingView(fileContent: .constant("test.py"))
+        TemplatesListCellView(fileContent: .constant("test.py"))
     }
 }
