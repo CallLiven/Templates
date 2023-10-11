@@ -13,7 +13,7 @@ class SidebarModel: ObservableObject {
     @Published var isNameDuplicate = false
     
     func refreshItems() {
-        items = FileHelper.shared.folders() ?? []
+        items = FileUtils.shared.folders() ?? []
     }
     
     func addItem(named name: String) {

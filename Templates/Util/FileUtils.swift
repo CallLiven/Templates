@@ -7,9 +7,9 @@
 
 import Foundation
 
-class FileHelper {
+class FileUtils {
     
-    static let shared = FileHelper()
+    static let shared = FileUtils()
     private init() {
         // 初始化时设置默认路径
         // Mac 文件访问权限官方文档：https://developer.apple.com/documentation/security/app_sandbox/accessing_files_from_the_macos_app_sandbox
@@ -162,7 +162,7 @@ class FileHelper {
     }
 }
 
-extension FileHelper {
+extension FileUtils {
     /// 读取moudle文件夹内的所有文件
     /// - Parameter moudle: moduleName
     /// - Returns: [fileName]
