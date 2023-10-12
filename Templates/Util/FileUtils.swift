@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppKit
 
 class FileUtils {
     
@@ -160,7 +161,18 @@ class FileUtils {
             return false
         }
     }
+    
+    
+    /// 用Finder打开指定路径的文件夹
+    /// - Parameter path: path
+    func openFinder(at path: String) {
+        let fullPath = (path as NSString).expandingTildeInPath
+        let url = URL(fileURLWithPath: fullPath)
+        let workspace = NSWorkspace.shared
+        workspace.open(url)
+    }
 }
+
 
 extension FileUtils {
     /// 读取moudle文件夹内的所有文件
@@ -168,5 +180,10 @@ extension FileUtils {
     /// - Returns: [fileName]
     func moudleContainFiles(_ moudle: String) -> [String]? {
         files(inDirectory: defaultPath + "templates/" + moudle)
+    }
+    
+    /// 打开模版的主要文件夹目录
+    func openMoudlesFoulder() {
+        openFinder(at: defaultPath)
     }
 }

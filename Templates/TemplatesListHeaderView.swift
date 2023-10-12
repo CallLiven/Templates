@@ -18,6 +18,7 @@ struct TemplatesListHeaderView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            ProjectRootFolderPath()
             SectionHeaderView()
             List {
                 ForEach(items.indices, id: \.self) { index in
@@ -25,7 +26,7 @@ struct TemplatesListHeaderView: View {
                 }
             }
         }
-        .padding(.horizontal, 4)
+        .padding(.horizontal, 8)
         .padding(.vertical, 12)
     }
     
@@ -53,6 +54,31 @@ extension TemplatesListHeaderView {
                     addParamItem()
                 }
         }.padding(.bottom, 12)
+    }
+    
+    @ViewBuilder
+    func ProjectRootFolderPath() -> some View {
+        VStack {
+            Text("项目根目录")
+                .font(.title3)
+                .foregroundColor(.secondary)
+                .padding(.bottom, 8)
+                .hSpacing(.leading)
+            
+            Text("请选择项目根目录文件夹授权")
+                .padding(.vertical, 8)
+                .font(.body)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .center)  // 设置frame
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.blue)
+                )
+                .padding(.horizontal, 8)
+                .padding(.bottom, 16)
+            
+        }
+        .padding(.bottom, 12)
     }
 }
 

@@ -59,16 +59,28 @@ struct SideBarView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "plus.circle.fill")
-                .resizable()
-                .foregroundColor(.blue)
-                .frame(width: 20, height: 20)
-                .hSpacing(.trailing)
-                .padding(.trailing, 10)
-                .onTapGesture {
-                    isEditingNewItem = true
-                    model.addDefaultValue()
-                }
+            HStack(spacing: 16) {
+                Spacer()
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .foregroundColor(.blue)
+                    .frame(width: 20, height: 20)
+                    .onTapGesture {
+                        isEditingNewItem = true
+                        model.addDefaultValue()
+                    }
+                
+                Image(systemName: "doc.viewfinder.fill")
+                    .resizable()
+                    .foregroundColor(.blue)
+                    .frame(width: 20, height: 20)
+                    .onTapGesture {
+                        FileUtils.shared.openMoudlesFoulder()
+                    }
+            }
+            .padding(.horizontal, 8)
+            .frame(maxWidth: .infinity)
+            
             
             List {
                 ForEach(model.items, id: \.self) { item in
